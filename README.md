@@ -7,7 +7,9 @@ chmod 755 /usr/local/bin/kubectl-myshell
 
 kubectl myshell node-name
 
-[root@iZ2ze***3uhsZ my-bpftrace]# kubectl get nodes
+[root@iZ2ze***3uhsZ my-bpftrace]
+```
+# kubectl get nodes
 NAME                        STATUS   ROLES    AGE    VERSION
 cn-beijing.192.168.0.17     Ready    <none>   173d   v1.18.8-aliyun.1
 cn-beijing.192.168.0.246    Ready    <none>   611d   v1.18.8-aliyun.1
@@ -15,6 +17,7 @@ cn-beijing.192.168.66.175   Ready    <none>   416d   v1.18.8-aliyun.1
 cn-beijing.192.168.88.154   Ready    <none>   528d   v1.18.8-aliyun.1
 cn-beijing.192.168.88.156   Ready    <none>   393d   v1.18.8-aliyun.1
 cn-beijing.192.168.88.23    Ready    <none>   30d    v1.18.8-aliyun.1
+
 [root@iZ2z****uhsZ my-bpftrace]# kubectl myshell cn-beijing.192.168.88.23
 spawning "nsenter-7wmuc4" on "cn-beijing.192.168.88.23"
 
@@ -31,3 +34,4 @@ cilium_host: flags=4291<UP,BROADCAST,RUNNING,NOARP,MULTICAST>  mtu 1500
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 13  bytes 1196 (1.1 KiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
