@@ -90,7 +90,7 @@ if [ -z "$node" ]; then
 fi
 
 image="${KUBECTL_NODE_SHELL_IMAGE:-docker.io/library/alpine}"
-pod="nsenter-$(env LC_ALL=C tr -dc a-z0-9 </dev/urandom | head -c 6)"
+pod="myshell-$(env LC_ALL=C tr -dc a-z0-9 </dev/urandom | head -c 6)"
 
 # Check the node
 $kubectl get node "$node" >/dev/null || exit 1
@@ -112,7 +112,7 @@ overrides="$(
           "privileged": true
         },
         "image": "$image",
-        "name": "nsenter",
+        "name": "myshell",
         "stdin": true,
         "stdinOnce": true,
         "tty": $tty,
