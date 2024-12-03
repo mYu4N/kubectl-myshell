@@ -21,26 +21,6 @@ while [ $# -gt 0 ]; do
     echo "kubectl-myshell $version"
     exit 0
     ;;
-  --context)
-    nodefaultctx=1
-    kubectl="$kubectl --context $2"
-    shift
-    shift
-    ;;
-  --kubecontext=*)
-    nodefaultctx=1
-    kubectl="$kubectl --context=${key##*=}"
-    shift
-    ;;
-  --kubeconfig)
-    kubectl="$kubectl --kubeconfig $2"
-    shift
-    shift
-    ;;
-  --kubeconfig=*)
-    kubectl="$kubectl --kubeconfig=${key##*=}"
-    shift
-    ;;
   -n | --namespace)
     nodefaultns=1
     kubectl="$kubectl --namespace $2"
@@ -69,7 +49,6 @@ while [ $# -gt 0 ]; do
 done
 
 # Set the default context and namespace to avoid situations where the user switch them during the build process
-[ "$nodefaultctx" = 1 ] || kubectl="$kubectl --context=$(${kubectl} config current-context)"
 [ "$nodefaultns" = 1 ] || kubectl="$kubectl --namespace=$(${kubectl} config view --minify --output 'jsonpath={.contexts..namespace}')"
 
 if [ $# -gt 0 ]; then
@@ -89,7 +68,7 @@ if [ -z "$node" ]; then
   exit 1
 fi
 
-image="${KUBECTL_NODE_SHELL_IMAGE:-docker.io/library/alpine}"
+image="${KUBECTL_NODE_SHELL_IMAGE:-alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3}"
 pod="myshell-$(env LC_ALL=C tr -dc a-z0-9 </dev/urandom | head -c 6)"
 
 # Check the node
